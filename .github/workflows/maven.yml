@@ -22,7 +22,8 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Build Docker Images and Run with docker compose
-      run: docker-compose -f docker-compose-standalone.yml up
-    - name: Build with Maven
-      run: mvn clean test
+    - name: Build Docker Images and Run with docker compose and Run with Maven
+      run: |
+        docker-compose -f docker-compose-standalone.yml up
+        mvn clean test
+        
