@@ -1,6 +1,7 @@
 package com.docker.web.tests;
 
 import org.testng.annotations.Test;
+import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
