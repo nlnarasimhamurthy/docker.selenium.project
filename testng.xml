@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite thread-count="1" name="Suite">
   <test thread-count="1" name="Test">
+  	<parameter name="browser" value="chrome"/>
     <classes>
       <class name="com.docker.web.tests.LoginTest"/>
       <class name="com.docker.web.tests.LoginTest2"/>
