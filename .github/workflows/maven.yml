@@ -22,7 +22,8 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Start docker containers
-      run: docker-compose -f "docker-compose-standalone.yml" up
+      run: |
+        chrmod +x ./StartSeleniumGrid.sh
     - name: Run with Maven
       run: mvn clean test
         
