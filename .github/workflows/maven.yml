@@ -5,9 +5,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ main ]
+    branches: [ RemoteAndLocalExecution ]
   pull_request:
-    branches: [ main ]
+    branches: [ RemoteAndLocalExecution ]
 
 jobs:
   build:
@@ -21,15 +21,8 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Start docker containers
-      run: |
-        docker -v
-        docker images
-        docker-compose -f docker-compose-standalone.yml up -d
-        docker images
-        docker ps
     - name: Run with Maven
-      run: mvn clean test
+      run: mvn clean -DsuiteXmlFile=testng.xml -Dbrowser=chrome -DgridExe=No test
         
         
         
