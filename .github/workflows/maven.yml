@@ -22,8 +22,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Start docker containers
-      run: |
-        chmod +x StartSeleniumGrid.sh
+      run: chmod +x StartSeleniumGrid.sh
     - name: Run with Maven
       run: mvn clean test
         
