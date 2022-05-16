@@ -19,28 +19,34 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class BaseTest {
 	WebDriver driver;
 	DesiredCapabilities capabilities;
-	@Parameters({"browser"})
+	@Parameters({"browser", "gridExe"})
 	@BeforeClass
-	public void beforeClass(String browser) {
+	public void beforeClass(String browser, String gridExe) {
 		//String browser = "chrome";
 		System.out.println("--------------------"+browser+"----------------------");
 		capabilities = new DesiredCapabilities();
 		capabilities.setPlatform(Platform.LINUX);
-		if (browser.equalsIgnoreCase("chrome")) {
-			capabilities.setBrowserName("chrome");
-			try {
-				driver = new RemoteWebDriver(new URL("http://localhost:4441/wd/hub"), capabilities);
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
+		if (gridExe.equalsIgnoreCase("Yes")) {
+			if (browser.equalsIgnoreCase("chrome")) {
+				capabilities.setBrowserName("chrome");
+				try {
+					driver = new RemoteWebDriver(new URL("http://localhost:4441/wd/hub"), capabilities);
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+				}
 			}
+			if (browser.equalsIgnoreCase("firefox")) {
+				capabilities.setBrowserName("firefox");
+				try {
+					driver = new RemoteWebDriver(new URL("http://localhost:4442/wd/hub"), capabilities);
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+				}
+			}			
 		}
-		if (browser.equalsIgnoreCase("firefox")) {
-			capabilities.setBrowserName("firefox");
-			try {
-				driver = new RemoteWebDriver(new URL("http://localhost:4442/wd/hub"), capabilities);
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
+		if (gridExe.equalsIgnoreCase("") || gridExe.equalsIgnoreCase("No")) {
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver();
 		}
 		System.out.println("Test running with browser "+ browser);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));

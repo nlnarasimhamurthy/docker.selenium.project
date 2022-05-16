@@ -3,6 +3,7 @@
 <suite thread-count="1" name="Suite">
   <test thread-count="1" name="Test">
   	<parameter name="browser" value="chrome"/>
+  	<parameter name="gridExe" value="No"/>
     <classes>
       <class name="com.docker.web.tests.LoginTest"/>
       <class name="com.docker.web.tests.LoginTest2"/>
