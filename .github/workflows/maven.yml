@@ -23,7 +23,7 @@ jobs:
         cache: maven
     - name: Start docker containers
       run: |
-        chrmod +x ./StartSeleniumGrid.sh
+        chmod +x ./StartSeleniumGrid.sh
     - name: Run with Maven
       run: mvn clean test
         
