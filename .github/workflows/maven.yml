@@ -21,9 +21,8 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Building docker containers with docker compose
-      with: 
-        docker-compose: -f docker-compose-standalone.yml up
+    - name: Start docker containers
+      run: docker-compose -f "docker-compose-standalone.yml" up -d --build
     - name: Run with Maven
       run: mvn clean test
         
