@@ -22,7 +22,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Start docker containers
-      run: docker-compose -f "docker-compose-standalone.yml" -d up
+      run: docker-compose -f "docker-compose-standalone.yml" up
     - name: Run with Maven
       run: mvn clean test
         
