@@ -13,9 +13,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    services:
-      my-docker-compose-runner:
-        docker-compose -f docker-compose-standalone.yml up
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 11
@@ -24,6 +21,9 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
+    - name: Building docker containers with docker compose
+      with: 
+        docker-compose: -f docker-compose-standalone.yml up
     - name: Run with Maven
       run: mvn clean test
         
