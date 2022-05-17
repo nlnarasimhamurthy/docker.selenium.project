@@ -24,7 +24,7 @@ jobs:
     - name: Run with Maven
       run: |
         mvn clean
-        mvn -DsuiteXmlFile="testng.xml" -Dbrowser="chrome" -DgridExe="No" test
+        mvn -Dbrowser="chrome" -DgridExe="No" test
         
         
         
