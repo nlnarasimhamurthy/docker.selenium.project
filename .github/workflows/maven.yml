@@ -22,9 +22,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Run with Maven
-      run: |
-        mvn clean
-        mvn -Dbrowser="chrome" -DgridExe="No" test
+      run: mvn -DsuiteXmlFile=testng.xml -Dbrowser=chrome -DgridExe=No test
         
         
         
