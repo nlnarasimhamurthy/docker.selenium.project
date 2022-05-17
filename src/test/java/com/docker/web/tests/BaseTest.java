@@ -8,6 +8,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
@@ -46,11 +47,15 @@ public class BaseTest {
 		}
 		if (gridExe.equalsIgnoreCase("") || gridExe.equalsIgnoreCase("No")) {
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			ChromeOptions chromeOptions = new ChromeOptions();
+			chromeOptions.addArguments("--headless");
+			chromeOptions.addArguments("--no-sandbox");
+			chromeOptions.addArguments("--disable-dev-shm-usage");
+			driver = new ChromeDriver(chromeOptions);
 		}
 		System.out.println("Test running with browser "+ browser);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		driver.manage().window().setSize(new Dimension(1300,768));
+		driver.manage().window().setSize(new Dimension(1300,760));
 	}
 	
 	
