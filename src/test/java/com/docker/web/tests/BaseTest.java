@@ -46,7 +46,11 @@ public class BaseTest {
 		}
 		if (gridExe.equalsIgnoreCase("") || gridExe.equalsIgnoreCase("No")) {
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			ChromeOptions chromeOptions = new ChromeOptions();
+			chromeOptions.addArguments("--headless");
+			chromeOptions.addArguments("--no-sandbox");
+			chromeOptions.addArguments("--disable-dev-shm-usage");
+			driver = new ChromeDriver(chromeOptions);
 		}
 		System.out.println("Test running with browser "+ browser);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
